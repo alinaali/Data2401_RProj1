@@ -12,12 +12,13 @@ output: html_document
 library(tidyverse) 
 library(datasauRus)
 ```
-
-
+ 
+ 
 ### Exercise 1
 
 The datasaurus_dozen file have 1846 rows and 3 columns.
 There are 3 variables in the data frame which includes, dataset, x, and y.
+
 
 ### Exercise 2
 
@@ -37,18 +38,16 @@ dino_data %>%
   summarize(r = cor(x, y))
 ```
 
+
 ### Exercise 3
 
-
-Plot `y` vs. `x` for the star dataset
-
+Plot `y` vs. `x` for the star dataset.
 
 ```{r plot-star}
 star_data <- datasaurus_dozen %>%
   filter(dataset == "star")
 ggplot(data = star_data, mapping = aes(x = x, y = y)) +
   geom_point()
-
 ```
 
 To calculate the correlation coefficient between `x` and `y` for the star dataset.
@@ -56,23 +55,31 @@ To calculate the correlation coefficient between `x` and `y` for the star datase
 ```{r cor-star}
 star_data %>%
   summarize(r = cor(x, y))
-
 ```
+
 The r value of star dataset(-0.0629611) is greater than the r value of dino dataset(-0.06447185).The r value of star and dino dataset are almost same which are negative numbers. It also shows that the relationship between x and y is not linear.
+
 
 ### Exercise 4
 
-(Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
+Plot `y` vs. `x` for the circle dataset.
 
-```{r}
-
-
+```{r plot-circle}
+circle_data <- datasaurus_dozen %>%
+  filter(dataset == "circle")
+ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
+  geom_point()
 ```
 
-```{r}
+To calculate the correlation coefficient between `x` and `y` for the circle dataset.
 
-
+```{r cor-circle}
+circle_data %>%
+  summarize(r = cor(x, y))
 ```
+
+The r value of circle dataset(-0.06834336) is less than the r value of dino dataset(-0.06447185).The r value of the circle and dino dataset represents negative values. In circle and dino dataset it shows that the relationship between x and y is not linear.
+
 
 ### Exercise 5
 
