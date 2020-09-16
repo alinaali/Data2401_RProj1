@@ -2,7 +2,12 @@
 title: "R Project 1 - Hello R"
 author: "Alina Ali"
 date: "9/16/2020"
-output: html_document
+output: 
+  html_document: 
+    fig_width: 6
+    fig_height: 6
+    highlight: pygments
+    theme: readable
 ---
 
 
@@ -24,14 +29,14 @@ There are 3 variables in the data frame which includes, dataset, x, and y.
 
 Plot `y` vs. `x` for the dino dataset. 
 
-```{r plot-dino, fig.height=3, fig.width=6}
+```{r plot-dino, fig.height=5, fig.width=6}
 dino_data <- datasaurus_dozen %>%
   filter(dataset == "dino")
 ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
-To calculate the correlation coefficient between `x` and `y` for this dataset.
+To calculate the correlation coefficient between `x` and `y` for the dino dataset.
 
 ```{r cor-dino}
 dino_data %>%
@@ -83,4 +88,21 @@ The r value of circle dataset(-0.06834336) is less than the r value of dino data
 
 ### Exercise 5
 
-(Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, with the green +C.)
+Plot all datasets.
+
+```{r plot-all datasets}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+geom_point()+
+facet_wrap(~ dataset, ncol = 3) + # facet the dataset variable, in 3 cols
+theme(legend.position = "none")
+```
+
+To calculate the correlation coefficient summary of all datasets.
+
+```{r cor-group_by}
+datasaurus_dozen %>%
+group_by(dataset) %>%
+summarize(r = cor(x, y)) %>%
+print(13)
+```
+
