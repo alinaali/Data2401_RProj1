@@ -21,7 +21,7 @@ There are 3 variables in the data frame which includes, dataset, x, and y.
 
 ### Exercise 2
 
-Plot y vs. x for the dino dataset. 
+Plot `y` vs. `x` for the dino dataset. 
 
 ```{r plot-dino, fig.height=3, fig.width=6}
 dino_data <- datasaurus_dozen %>%
@@ -39,21 +39,26 @@ dino_data %>%
 
 ### Exercise 3
 
-(Add code and narrative as needed. Note that the R chunks are labeled with `plot-star` and `cor-star` to provide spaces to place the code for plotting and calculating the correlation coefficient. To finish, remember to clean up the narrative by removing these instructions.)
 
+Plot `y` vs. `x` for the star dataset
 
 
 ```{r plot-star}
-
+star_data <- datasaurus_dozen %>%
+  filter(dataset == "star")
+ggplot(data = star_data, mapping = aes(x = x, y = y)) +
+  geom_point()
 
 ```
 
-I'm some text, you should replace me with more meaningful text...
+To calculate the correlation coefficient between `x` and `y` for the star dataset.
  
 ```{r cor-star}
-
+star_data %>%
+  summarize(r = cor(x, y))
 
 ```
+The r value of star dataset(-0.0629611) is greater than the r value of dino dataset(-0.06447185).The r value of star and dino dataset are almost same which are negative numbers. It also shows that the relationship between x and y is not linear.
 
 ### Exercise 4
 
